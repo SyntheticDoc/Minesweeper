@@ -86,23 +86,29 @@ public class Playfield extends Gameobject{
     }
 
     public void reveal(Field f) {
-        f.reveal();
+        if(!isGameOver && !isWon) {
+            f.reveal();
+        }
     }
 
     public void buttonReleaseAll() {
-        for(Field[] ff : playfield) {
-            for(Field f : ff) {
-                f.release();
+        if(!isGameOver && !isWon) {
+            for (Field[] ff : playfield) {
+                for (Field f : ff) {
+                    f.release();
+                }
             }
         }
     }
 
     public Field buttonRelease(MouseClickWrapper click) {
-        for(Field[] ff : playfield) {
-            for(Field f : ff) {
-                if(f.isHit(click)) {
-                    f.release();
-                    return f;
+        if(!isGameOver && !isWon) {
+            for (Field[] ff : playfield) {
+                for (Field f : ff) {
+                    if (f.isHit(click)) {
+                        f.release();
+                        return f;
+                    }
                 }
             }
         }
@@ -111,11 +117,13 @@ public class Playfield extends Gameobject{
     }
 
     public Field buttonDepress(MouseClickWrapper click) {
-        for(Field[] ff : playfield) {
-            for(Field f : ff) {
-                if(f.isHit(click)) {
-                    f.depress(click);
-                    return f;
+        if(!isGameOver && !isWon) {
+            for (Field[] ff : playfield) {
+                for (Field f : ff) {
+                    if (f.isHit(click)) {
+                        f.depress(click);
+                        return f;
+                    }
                 }
             }
         }
@@ -162,6 +170,7 @@ public class Playfield extends Gameobject{
             }
         }
 
+        buttonReleaseAll(); // to release all buttons if some still appear pressed pressed
         isWon = true;
     }
 

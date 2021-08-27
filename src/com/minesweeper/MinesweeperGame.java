@@ -48,10 +48,6 @@ public class MinesweeperGame {
                     init = false;
                 }
 
-                if(flagCount > 0) {
-                    //System.out.println("Beep");
-                }
-
                 game.setDigitDisplay_mines(game.getPlayfield().mineCount - flagCount);
                 game.setDigitDisplay_time(seconds);
                 g.drawPlayScreen(game.getPlayfield());
@@ -59,10 +55,6 @@ public class MinesweeperGame {
                 if(StdDraw.isMousePressed()) {
                     click = processMouseClick(true);
                     lastPressed = game.buttonDepress(click);
-
-                    if(click.y > 225) {
-                        click.y = click.y;
-                    }
 
                     if(lastPressed != lastPressed_prev) {
                         if(lastPressed_prev instanceof Field) {
@@ -97,7 +89,7 @@ public class MinesweeperGame {
                         } else {
                             if(lastPressed instanceof Field && click != null) {
                                 if(click.buttonClicked == 1) {
-                                    ((Field) lastPressed).reveal();
+                                    game.getPlayfield().reveal(((Field) lastPressed));
                                 } else if(click.buttonClicked == 3) {
                                     flagChange = ((Field) lastPressed).toggleFlag();
 
