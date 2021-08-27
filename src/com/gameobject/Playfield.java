@@ -164,7 +164,7 @@ public class Playfield extends Gameobject{
     public void isVictory() {
         for(Field[] ff : playfield) {
             for(Field f : ff) {
-                if(f.getState() == FIELDSTATE.FIELDUNREVEALED && !f.isMine) {
+                if(f.getState() == FIELDSTATE.FIELDUNREVEALED || (f.getState() == FIELDSTATE.FIELDFLAGGED && !f.isMine)) {
                     return;
                 }
             }
