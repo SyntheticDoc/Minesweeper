@@ -7,7 +7,7 @@ int main()
 {
     std::cout << "#####################################" << std::endl;
     std::cout << "#                                   #" << std::endl;
-    std::cout << "#         MINESWEEPER v1.0          #" << std::endl;
+    std::cout << "#         MINESWEEPER v1.1          #" << std::endl;
     std::cout << "#                                   #" << std::endl;
     std::cout << "#      Author: Michael Sterzer      #" << std::endl;
     std::cout << "#                                   #" << std::endl;
