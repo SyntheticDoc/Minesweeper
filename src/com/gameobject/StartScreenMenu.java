@@ -33,28 +33,28 @@ public class StartScreenMenu extends Gameobject {
     }
 
     public void buttonReleaseAll() {
-        btn_easy.release();
-        btn_medium.release();
-        btn_hard.release();
-        btn_exit.release();
+        btn_easy.release(1);
+        btn_medium.release(1);
+        btn_hard.release(1);
+        btn_exit.release(1);
     }
 
     public MenuButton buttonRelease(MouseClickWrapper click) {
         if (btn_easy.isHit(click)) {
             //Debug.print("Clicked: btn_easy");
-            btn_easy.release();
+            btn_easy.release(click.buttonClicked);
             return btn_easy;
         } else if (btn_medium.isHit(click)) {
             //Debug.print("Clicked: btn_medium");
-            btn_medium.release();
+            btn_medium.release(click.buttonClicked);
             return btn_medium;
         } else if (btn_hard.isHit(click)) {
             //Debug.print("Clicked: btn_hard");
-            btn_hard.release();
+            btn_hard.release(click.buttonClicked);
             return btn_hard;
         } else if (btn_exit.isHit(click)) {
             //Debug.print("Clicked: btn_exit");
-            btn_exit.release();
+            btn_exit.release(click.buttonClicked);
             return btn_exit;
         } else {
             return null;
@@ -64,19 +64,19 @@ public class StartScreenMenu extends Gameobject {
     public MenuButton buttonDepress(MouseClickWrapper click) {
         if (btn_easy.isHit(click)) {
             //Debug.print("Depressed: btn_easy");
-            btn_easy.depress();
+            btn_easy.depress(click.buttonClicked);
             return btn_easy;
         } else if (btn_medium.isHit(click)) {
             //Debug.print("Depressed: btn_medium");
-            btn_medium.depress();
+            btn_medium.depress(click.buttonClicked);
             return btn_medium;
         } else if (btn_hard.isHit(click)) {
             //Debug.print("Depressed: btn_hard");
-            btn_hard.depress();
+            btn_hard.depress(click.buttonClicked);
             return btn_hard;
         } else if (btn_exit.isHit(click)) {
             //Debug.print("Depressed: btn_exit");
-            btn_exit.depress();
+            btn_exit.depress(click.buttonClicked);
             return btn_exit;
         } else {
             return null;

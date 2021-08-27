@@ -13,15 +13,15 @@ public class MenuButton extends Gameasset {
         this.assetFile_depressed = assetFile_depressed;
     }
 
-    public void depress() {
-        if(!depressed) {
+    public void depress(int mouseButton) {
+        if(!depressed && mouseButton == 1) {
             depressed = true;
             assetFile = assetFile_depressed;
         }
     }
 
-    public void release() {
-        if(depressed) {
+    public void release(int mouseButton) {
+        if(depressed && mouseButton == 1) {
             depressed = false;
             assetFile = assetFile_normal;
         }

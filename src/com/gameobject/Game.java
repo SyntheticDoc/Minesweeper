@@ -76,7 +76,7 @@ public class Game {
         }
 
         if(isInHeader(click)) {
-            if(header_release(click)) {
+            if(header_release(click) && click.buttonClicked == 1) {
                 newGame(difficulty);
 
                 if(playfield.isGameOver) {

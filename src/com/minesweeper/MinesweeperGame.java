@@ -60,11 +60,15 @@ public class MinesweeperGame {
                     click = processMouseClick(true);
                     lastPressed = game.buttonDepress(click);
 
+                    if(click.y > 225) {
+                        click.y = click.y;
+                    }
+
                     if(lastPressed != lastPressed_prev) {
                         if(lastPressed_prev instanceof Field) {
                             ((Field) lastPressed_prev).release();
                         } else if(lastPressed_prev instanceof MenuButton) {
-                            ((MenuButton) lastPressed_prev).release();
+                            ((MenuButton) lastPressed_prev).release(click == null ? 1 : click.buttonClicked);
                         }
 
                         if(lastPressed == null) {
@@ -84,7 +88,7 @@ public class MinesweeperGame {
                         lastPressed = game.buttonRelease(click);
 
                         if(lastPressed != lastPressed_prev) {
-                            if (lastPressed instanceof MenuButton && click != null) {
+                            if (lastPressed instanceof MenuButton && click != null && click.buttonClicked == 1) {
                                 // Smiley button was released, reset game
                                 init = true;
                             }
@@ -101,7 +105,7 @@ public class MinesweeperGame {
                                         flagCount += flagChange;
                                     }
                                 }
-                            } else if (lastPressed instanceof MenuButton && click != null) {
+                            } else if (lastPressed instanceof MenuButton && click != null && click.buttonClicked == 1) {
                                 // Smiley button was released, reset game
                                 init = true;
                             }
@@ -144,16 +148,18 @@ public class MinesweeperGame {
                         g.startmenu.buttonReleaseAll();
                     }
                 } else {
+                    click = processMouseClick(true);
+
                     if(buttonPressed != null) {
                         buttonPressed_prev = buttonPressed;
-                        buttonPressed = g.startmenu.buttonRelease(processMouseClick(true));
+                        buttonPressed = g.startmenu.buttonRelease(click);
 
                         if(buttonPressed != buttonPressed_prev) {
                             buttonPressed = null;
                         }
                     }
 
-                    if(buttonPressed != null) {
+                    if(buttonPressed != null && click.buttonClicked == 1) {
                         switch (buttonPressed.name) {
                             case "btn_easy":
                                 game.newGame("Easy");

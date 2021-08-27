@@ -81,14 +81,14 @@ public class Header extends Gameobject {
     }
 
     public void buttonReleaseAll() {
-        smiley_happy.release();
-        smiley_dead.release();
+        smiley_happy.release(1);
+        smiley_dead.release(1);
     }
 
     public MenuButton buttonRelease(MouseClickWrapper click) {
         if(smiley_happy.isHit(click)) {
-            smiley_happy.release();
-            smiley_dead.release();
+            smiley_happy.release(click.buttonClicked);
+            smiley_dead.release(click.buttonClicked);
 
             if(gameOver) {
                 return smiley_dead;
@@ -102,8 +102,8 @@ public class Header extends Gameobject {
 
     public MenuButton buttonDepress(MouseClickWrapper click) {
         if(smiley_happy.isHit(click)) {
-            smiley_happy.depress();
-            smiley_dead.depress();
+            smiley_happy.depress(click.buttonClicked);
+            smiley_dead.depress(click.buttonClicked);
 
             if(gameOver) {
                 return smiley_dead;
