@@ -1,0 +1,11 @@
+-- DONE -- Implement victory condition: If all fields which are not mines are revealed, win
+
+-- DONE -- Implement victory visual
+
+-- DONE -- Implement mouse input
+
+-- DONE -- Implement new game button
+
+-- DONE -- Implement digital mine display
+
+Implement digital time display and time measurement
