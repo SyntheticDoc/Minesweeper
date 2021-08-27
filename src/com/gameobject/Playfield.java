@@ -24,6 +24,7 @@ public class Playfield extends Gameobject{
     Color textBackgroundColorVictory = Color.CYAN;
     private double textPosX, textPosY;
 
+    private boolean minesCreated = false;
     public boolean isGameOver = false;
     public boolean isWon = false;
 
@@ -42,7 +43,6 @@ public class Playfield extends Gameobject{
         textPosY = (MAX_Y / 2) - 4;
 
         generateField();
-        generateMines();
     }
 
     public void gameOver() {
@@ -107,6 +107,12 @@ public class Playfield extends Gameobject{
                 for (Field f : ff) {
                     if (f.isHit(click)) {
                         f.release();
+
+                        if(!minesCreated) {
+                            generateMines(f);
+                            minesCreated = true;
+                        }
+
                         return f;
                     }
                 }
@@ -144,7 +150,7 @@ public class Playfield extends Gameobject{
         }
     }
 
-    private void generateMines() {
+    private void generateMines(Field f) {
         int mineX, mineY;
 
         for (int i = 0; i < mineCount; i++) {
@@ -152,7 +158,7 @@ public class Playfield extends Gameobject{
             mineY = ThreadLocalRandom.current().nextInt(0, sizeY);
 
             // if mine is already set at this position, generate new position
-            while (playfield[mineY][mineX].isMine) {
+            while (playfield[mineY][mineX].isMine || playfield[mineY][mineX].equals(f)) {
                 mineX = ThreadLocalRandom.current().nextInt(0, sizeX);
                 mineY = ThreadLocalRandom.current().nextInt(0, sizeY);
             }
