@@ -89,6 +89,12 @@ public class MinesweeperGame {
                         } else {
                             if(lastPressed instanceof Field && click != null) {
                                 if(click.buttonClicked == 1) {
+                                    flagChange = ((Field) lastPressed).toggleFlag();
+
+                                    if(flagChange != 0) {
+                                        flagCount += flagChange;
+                                    }
+
                                     game.getPlayfield().reveal(((Field) lastPressed));
                                 } else if(click.buttonClicked == 3) {
                                     flagChange = ((Field) lastPressed).toggleFlag();
